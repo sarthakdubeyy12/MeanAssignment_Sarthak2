@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Task 5</title>
+  <style>
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+
+    input:invalid, textarea:invalid {
+      border: 2px solid red;
+    }
+  </style>
+</head>
+<body>
+  <form id="contactForm" onsubmit="return validateForm()">
+    <label>Name: <input type="text" id="name"></label>
+    <span class="error" id="nameError"></span><br><br>
+
+    <label>Email: <input type="email" id="email"></label>
+    <span class="error" id="emailError"></span><br><br>
+
+    <label>Website: <input type="url" id="website"></label>
+    <span class="error" id="websiteError"></span><br><br>
+
+    <label>Message: <textarea id="message"></textarea></label>
+    <span class="error" id="messageError"></span><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function validateForm() {
+      let valid = true;
+
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const website = document.getElementById('website');
+      const message = document.getElementById('message');
+
+      document.getElementById('nameError').textContent = name.value.trim() ? '' : 'This field is required';
+      document.getElementById('emailError').textContent = email.validity.valid ? '' : 'A valid email address is required';
+      document.getElementById('websiteError').textContent = website.validity.valid ? '' : 'A valid url is required';
+      document.getElementById('messageError').textContent = message.value.trim() ? '' : 'This field is required';
+
+      if (!name.value.trim() || !email.validity.valid || !website.validity.valid || !message.value.trim()) {
+        valid = false;
+      }
+
+      return valid;
+    }
+  </script>
+</body>
+</html>

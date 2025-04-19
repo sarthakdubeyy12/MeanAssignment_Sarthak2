@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Task 8</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: white;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: linear-gradient(to right, #d4fc79, #ffafbd);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+        h2 {
+            color: blue;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+        .register-btn {
+            background: red;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form onsubmit="return validateForm()">
+            <input type="text" id="firstName" placeholder="First Name">
+            <div class="error" id="firstNameError"></div>
+
+            <input type="text" id="lastName" placeholder="Last Name">
+            <div class="error" id="lastNameError"></div>
+
+            <input type="email" id="email" placeholder="Email">
+            <div class="error" id="emailError"></div>
+
+            <input type="password" id="password" placeholder="Password">
+            <div class="error" id="passwordError"></div>
+
+            <input type="password" id="confirmPassword" placeholder="Re-enter Password">
+            <div class="error" id="confirmPasswordError"></div>
+
+            <label>Gender:</label>
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <br>
+
+            <input type="number" id="age" placeholder="Age">
+            <div class="error" id="ageError"></div>
+
+            <input type="text" id="phone" placeholder="Phone Number">
+            <div class="error" id="phoneError"></div>
+
+            <textarea id="address" placeholder="Address"></textarea>
+            <div class="error" id="addressError"></div>
+
+            <input type="text" id="state" placeholder="State">
+            <div class="error" id="stateError"></div>
+
+            <select id="country">
+                <option value="">Choose your country</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+            </select>
+            <div class="error" id="countryError"></div>
+
+            <button type="submit" class="register-btn">REGISTER</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let valid = true;
+
+            function showError(id, message) {
+                document.getElementById(id).innerText = message;
+                valid = false;
+            }
+
+            document.querySelectorAll('.error').forEach(e => e.innerText = "");
+
+            if (document.getElementById('firstName').value.trim() === '') {
+                showError('firstNameError', 'POOR');
+            }
+            if (document.getElementById('lastName').value.trim() === '') {
+                showError('lastNameError', 'POOR');
+            }
+            if (document.getElementById('email').value.trim() === '') {
+                showError('emailError', 'POOR');
+            }
+            if (document.getElementById('password').value.trim() === '') {
+                showError('passwordError', 'POOR');
+            }
+            if (document.getElementById('confirmPassword').value !== document.getElementById('password').value) {
+                showError('confirmPasswordError', 'POOR OR MISMATCH');
+            }
+            if (document.getElementById('age').value.trim() === '') {
+                showError('ageError', 'POOR');
+            }
+            if (document.getElementById('phone').value.trim() === '') {
+                showError('phoneError', 'POOR');
+            }
+            if (document.getElementById('address').value.trim() === '') {
+                showError('addressError', 'POOR');
+            }
+            if (document.getElementById('state').value.trim() === '') {
+                showError('stateError', 'POOR');
+            }
+            if (document.getElementById('country').value === '') {
+                showError('countryError', 'POOR');
+            }
+
+            return valid;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Task 4</title>
+</head>
+<body>
+  <button onclick="showDate()">show date</button>
+  <p id="date"></p>
+
+  <button onclick="showTime()">show Time</button>
+  <p id="time"></p>
+
+  <script>
+    function showDate() {
+      const date = new Date();
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      document.getElementById('date').textContent = date.toLocaleDateString('en-GB', options).replace(/ /g, '/');
+    }
+
+    function showTime() {
+      document.getElementById('time').textContent = new Date().toString();
+    }
+  </script>
+</body>
+</html>
